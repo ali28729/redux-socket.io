@@ -18,7 +18,7 @@ export default function createSocketIoMiddleware(socket, criteria = [],
   return ({ dispatch }) => {
     // Wire socket.io to dispatch actions sent by the server.
     socket.on(eventName, dispatch);
-    return next => (action) => {
+    return (next) => (action) => {
       if (evaluate(action, criteria)) {
         return execute(action, emitBound, next, dispatch);
       }
@@ -41,7 +41,7 @@ export default function createSocketIoMiddleware(socket, criteria = [],
       matched = type.indexOf(option) === 0;
     } else if (Array.isArray(option)) {
       // Array of types
-      matched = option.some(item => type.indexOf(item) === 0);
+      matched = option.some((item) => type.indexOf(item) === 0);
     }
     return matched;
   }

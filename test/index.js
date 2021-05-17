@@ -180,7 +180,7 @@ suite('Better chainability', () => {
 
   test('Return the return value of next', () => {
     const expected = 'value';
-    const next = action => action.payload;
+    const next = (action) => action.payload;
     const actionHandler = nextHandler(next);
     const action = { type: 'test', payload: expected };
     expect(actionHandler(action)).toEqual(expected);
